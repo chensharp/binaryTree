@@ -37,7 +37,7 @@ int depth(Bitree T){
 }
 
 void printLevelNode(Bitree T,int level){
-    if(T== NULL || level == 1)
+    if(T== NULL || level < 1)
         return;
     if(level == 1){
         cout<<T->data<<" ";
@@ -67,7 +67,7 @@ void levelTraverse(Bitree T){
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    //cout << "Hello world!" << endl;
     Bitree T;
     createBitree(T);
 
