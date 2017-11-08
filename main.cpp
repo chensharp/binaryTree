@@ -1,15 +1,24 @@
 #include <iostream>
+#include<stdlib.h>
+
 
 using namespace std;
 
 
+//c style
 typedef struct node{
     node *leftchild;
     node *rightchild;
     char data;
-
-
 }Bitreenode,*Bitree;
+/*
+//c++ STYLE
+struct binode{
+    binode * leftchild;
+    binode * rightchild;
+    char data;
+    binode(int x=0):data(x),leftchild(NULL),rightchild(NULL){}
+};*/
 
 void createBitree(Bitree &T){
     char c;
@@ -23,40 +32,75 @@ void createBitree(Bitree &T){
         createBitree(T->rightchild);
     }
 }
-/*
-//创建二叉树CreateBTNode(*b,*str)
-void CreateBTNode(Bitree &b,char *str)//由str串创建二叉链
-{
-  Bitree St[MaxSize],*p=NULL;
-        int top=-1,k,j=0;
-        char ch;
-        b=NULL; //建立的二叉树初始时为空
-        ch=str[j];
-        while (ch!='\0')   //str未扫描完时循环
-        {
-           switch(ch)
-              {
-      case '(':top++;St[top]=p;k=1; break;  //为左孩子结点
-      case ')':top--;break;
-      case ',':k=2; break;
-   //为孩子结点右结点
-            default:p=(Bitree)malloc(sizeof(Bitreenode));
-           p->data=ch;p->lchild=p->rchild=NULL;
-            if (b==NULL)    //p为二叉树的根结点
-                b=p;
-            else    //已建立二叉树根结点
-                     {    switch(k)
-                          {
-                case 1:St[top]->lchild=p;break;
-                 case 2:St[top]->rchild=p;break;
-                    }
-     }
-               }
-        j++;
-     ch=str[j];
-          }
-}*/
 
+//创建二叉树CreateBTNode(*b,*str)
+void CreateBTNode_str(Bitree &b,char *str)//由str串创建二叉链
+{
+    Bitree St[1000],p=NULL;
+    int top=-1,k,j=0;
+    char ch;
+    b=NULL; //建立的二叉树初始时为空
+    ch=str[j];
+    while (ch!='\0')   //str未扫描完时循环
+    {
+        switch(ch){
+            case '(':top++;St[top]=p;k=1;
+                break;  //为左孩子结点
+            case ')':top--;
+                break;
+            case ',':k=2;
+                break;//为孩子结点右结点
+            default://匹配到节点
+                //p=(Bitree)malloc(sizeof(Bitreenode));
+                p=new Bitreenode;
+                p->data=ch;
+                p->leftchild=p->rightchild=NULL;
+
+                if (b == NULL)    //p为二叉树的根结点
+                    b = p;
+                else    //已建立二叉树根结点
+                {
+                    switch(k){
+                        case 1:St[top]->leftchild=p;break;
+                        case 2:St[top]->rightchild=p;break;
+                    }
+                }
+        }
+        j++;
+        ch=str[j];
+    }
+}
+
+/*
+void create_str1(Bitree &T,char *str){
+
+
+    int i=0;
+    char ch=str[i];
+    i++;
+    while(ch != '\0'){
+        switch(ch){
+            case '(':
+
+
+                break;
+            case ')':
+                break;
+            case ',':
+                break;
+            default:
+                Bitree p=
+
+
+
+        }
+
+
+        i++;
+        ch = str[i];
+    }
+
+}*/
 
 
 
@@ -105,8 +149,9 @@ int main()
 {
     //cout << "Hello world!" << endl;
     Bitree T;
-    createBitree(T);
-
+    //createBitree(T);
+    char str1[]= "a(b(,d),c(e,f(g,)))";
+    CreateBTNode_str(T,str1);
 
     levelTraverse(T);
 
