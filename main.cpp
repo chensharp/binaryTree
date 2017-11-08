@@ -23,6 +23,42 @@ void createBitree(Bitree &T){
         createBitree(T->rightchild);
     }
 }
+/*
+//创建二叉树CreateBTNode(*b,*str)
+void CreateBTNode(Bitree &b,char *str)//由str串创建二叉链
+{
+  Bitree St[MaxSize],*p=NULL;
+        int top=-1,k,j=0;
+        char ch;
+        b=NULL; //建立的二叉树初始时为空
+        ch=str[j];
+        while (ch!='\0')   //str未扫描完时循环
+        {
+           switch(ch)
+              {
+      case '(':top++;St[top]=p;k=1; break;  //为左孩子结点
+      case ')':top--;break;
+      case ',':k=2; break;
+   //为孩子结点右结点
+            default:p=(Bitree)malloc(sizeof(Bitreenode));
+           p->data=ch;p->lchild=p->rchild=NULL;
+            if (b==NULL)    //p为二叉树的根结点
+                b=p;
+            else    //已建立二叉树根结点
+                     {    switch(k)
+                          {
+                case 1:St[top]->lchild=p;break;
+                 case 2:St[top]->rchild=p;break;
+                    }
+     }
+               }
+        j++;
+     ch=str[j];
+          }
+}*/
+
+
+
 
 int getmax(int a,int b){ return a < b  ? b : a ;  }
 
